@@ -4,8 +4,10 @@ SHELL := /bin/bash
 
 build:
 	# build
-	-rm /tmp/jaml
 	go build -o /tmp/jaml
+	GOOS=linux   GOARCH=amd64 go build -o /tmp/jaml-linux-amd64
+	GOOS=darwin  GOARCH=amd64 go build -o /tmp/jaml-darwin-amd64
+	GOOS=windows GOARCH=amd64 go build -o /tmp/jaml-windows-amd64
 	@echo
 
 run: build
