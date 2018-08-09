@@ -12,7 +12,7 @@ GOOS=darwin  # or GOOS=linux or GOOS=windows
 GOARCH=amd64 # require AMD64 Architecture CPU
 
 # Download
-curl -fLR https://github.com/djeeno/jaml/releases/download/v2018.8.1/jaml-$GOOS-$GOARCH -o /tmp/jaml
+curl -fLR https://github.com/djeeno/jaml/releases/download/jaml-2018.8.1/jaml-$GOOS-$GOARCH -o /tmp/jaml
 
 # Add executable flag
 chmod +x /tmp/jaml
