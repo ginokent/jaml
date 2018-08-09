@@ -17,7 +17,10 @@ curl -fLR https://github.com/djeeno/jaml/releases/download/v2018.8.1/jaml-$GOOS-
 # Add executable flag
 chmod +x /tmp/jaml
 
-# Run
+# Convert JSON to YAML
 curl -fSs https://status.github.com/api.json | /tmp/jaml
+
+# Convert YAML to JSON
+curl -fSs https://status.github.com/api.json | /tmp/jaml | /tmp/jaml
 ```
 
