@@ -5,12 +5,14 @@ BIN_NAME := jaml
 
 build:
 	# build
-	go build -o /tmp/${BIN_NAME}
+	-rm -rf ./build/${BIN_NAME}*
+	mkdir -p ./build
+	go build -o ./build/${BIN_NAME}
 	@echo
 
 install: build
 	# install
-	sudo mv /tmp/${BIN_NAME} /usr/local/bin
+	sudo mv ./build/${BIN_NAME} /usr/local/bin
 	@echo
 	ls -l /usr/local/bin/${BIN_NAME}
 	@echo
@@ -29,9 +31,11 @@ run:
 
 release.build:
 	# release.build
-	GOOS=linux   GOARCH=amd64 go build -o /tmp/${BIN_NAME}-linux-amd64
-	GOOS=darwin  GOARCH=amd64 go build -o /tmp/${BIN_NAME}-darwin-amd64
-	GOOS=windows GOARCH=amd64 go build -o /tmp/${BIN_NAME}-windows-amd64
+	-rm -rf ./build/${BIN_NAME}*
+	mkdir -p ./build
+	GOOS=linux   GOARCH=amd64 go build -o ./build/${BIN_NAME}-linux-amd64
+	GOOS=darwin  GOARCH=amd64 go build -o ./build/${BIN_NAME}-darwin-amd64
+	GOOS=windows GOARCH=amd64 go build -o ./build/${BIN_NAME}-windows-amd64
 	@echo
 
 
