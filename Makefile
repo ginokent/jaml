@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 BIN_NAME := jaml
 
-.PHONY: build release.build run test
+.PHONY: build install run release.build
 
 build:
 	# build
@@ -15,13 +15,16 @@ install: build
 	ls -l /usr/local/bin/${BIN_NAME}
 	@echo
 
-run: build
+run:
 	# run
 	# JSON to YAML
-	curl -fSs https://status.github.com/api.json | /tmp/${BIN_NAME}
+	curl -fSs https://status.github.com/api.json |\
+		go run `find . -name "*.go" | grep -Ev ".+_test\.go"`
 	@echo
 	# YAML to JSON
-	curl -fSs https://status.github.com/api.json | /tmp/${BIN_NAME} | /tmp/${BIN_NAME}
+	curl -fSs https://status.github.com/api.json |\
+		go run `find . -name "*.go" | grep -Ev ".+_test\.go"` |\
+		go run `find . -name "*.go" | grep -Ev ".+_test\.go"`
 	@echo
 
 release.build:
