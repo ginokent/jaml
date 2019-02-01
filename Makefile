@@ -1,5 +1,7 @@
 SHELL := /bin/bash
 BIN_NAME := jaml
+GOARCH := amd64
+GOLDFLAGS := "-X 'main.date=$(shell TZ=Asia/Tokyo date +%Y%m%dT%H%M%S+0900)' -X 'main.hash=$(shell git rev-parse HEAD)' -X 'main.goversion=$(shell go version)'"
 
 .PHONY: build install run release.build
 
@@ -31,11 +33,11 @@ run:
 
 release.build:
 	# release.build
-	-rm -rf ./build/${BIN_NAME}*
+	-rm -rf ./build
 	mkdir -p ./build
-	GOOS=linux   GOARCH=amd64 go build -o ./build/${BIN_NAME}-linux-amd64
-	GOOS=darwin  GOARCH=amd64 go build -o ./build/${BIN_NAME}-darwin-amd64
-	GOOS=windows GOARCH=amd64 go build -o ./build/${BIN_NAME}-windows-amd64
-	@echo
+	export GOOS=linux GOARCH=amd64; go build -o ./build/${BIN_NAME}_$${GOOS}_$${GOARCH}
+	export GOOS=darwin GOARCH=amd64; go build -o ./build/${BIN_NAME}_$${GOOS}_$${GOARCH}
+	export GOOS=windows GOARCH=amd64; go build -o ./build/${BIN_NAME}_$${GOOS}_$${GOARCH}.exe
+	@ls -l ./build/jaml*
 
 

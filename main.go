@@ -30,7 +30,7 @@ func unmarshaledDataToBytes(data interface{}) interface{} {
 func JAML(bytes []byte) ([]byte, error) {
 	var data interface{}
 
-	// JSON
+	// JSON to YAML
 	if json.Valid(bytes) {
 		if err := json.Unmarshal(bytes, &data); err != nil {
 			return nil, fmt.Errorf("json.Unmarshal: %v", err)
@@ -47,7 +47,7 @@ func JAML(bytes []byte) ([]byte, error) {
 		return b, nil
 	}
 
-	// YAML
+	// YAML to JSON
 	if err := yaml.Unmarshal(bytes, &data); err != nil {
 		return nil, fmt.Errorf("yaml.Unmarshal: %v", err)
 	}

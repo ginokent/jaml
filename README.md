@@ -7,12 +7,14 @@ command line "JSON to YAML" or "YAML to JSON" converter
 ### how to install and first run
 
 ```
-# OS and Architecture
-GOOS=darwin  # or GOOS=linux or GOOS=windows
-GOARCH=amd64 # require AMD64 Architecture CPU
+# Install for Mac
+sudo bash -c 'curl -fLR https://github.com/djeeno/jaml/releases/download/0.0.1/jaml_darwin_amd64 -o /usr/local/bin/jaml && chmod +x /usr/local/bin/jaml'
 
-# Install
-sudo bash -c 'curl -fLR https://github.com/djeeno/jaml/releases/download/jaml-2018.8.1/jaml-'"${GOOS:?}-${GOARCH:?}"' -o /usr/local/bin/jaml && chmod +x $_'
+# Install for Linux
+sudo bash -c 'curl -fLR https://github.com/djeeno/jaml/releases/download/0.0.1/jaml_linux_amd64 -o /usr/local/bin/jaml && chmod +x /usr/local/bin/jaml'
+
+# Install for Windows
+Invoke-WebRequest https://github.com/djeeno/jaml/releases/download/0.0.1/jaml_windows_amd64.exe -OutFile jaml.exe
 
 # Convert JSON to YAML
 curl -fSs https://status.github.com/api.json | jaml
