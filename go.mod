@@ -1,4 +1,4 @@
-module workspace/jaml
+module github.com/djeeno/jaml
 
 go 1.12
 
