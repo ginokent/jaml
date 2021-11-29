@@ -16,12 +16,15 @@ sudo bash -c 'curl -fLR https://github.com/djeeno/jaml/releases/download/0.0.1/j
 # Install for Windows
 Invoke-WebRequest https://github.com/djeeno/jaml/releases/download/0.0.1/jaml_windows_amd64.exe -OutFile jaml.exe
 
+# Get JSON
+curl -fSs https://httpbin.org/get
+
 # Convert JSON to YAML
-curl -fSs https://status.github.com/api.json | jaml
+curl -fSs https://httpbin.org/get | jaml
 
 # Convert YAML to JSON
-curl -fSs https://status.github.com/api.json | jaml | jaml
+curl -fSs https://httpbin.org/get | jaml | jaml
 
 # Convert JSON to YAML ...
-curl -fSs https://status.github.com/api.json | jaml | jaml | jaml
+curl -fSs https://httpbin.org/get | jaml | jaml | jaml
 ```
